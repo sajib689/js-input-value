@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="field">
+        <input
+          type="url"
+          id="ContactForm-product"
+          class="field__input"
+          autocomplete="url"
+          name="contact[product link]"
+          value=""
+          placeholder=""
+          disabled
+        >
+        <label class="field__label" for="ContactForm-product">Product Link</label>
+      </div>
+      <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+          const getInputValueFromUrl = () => {
+            const currentUrl = window.location.href;
+            const urlParts = currentUrl.split('?');
+        
+            if (urlParts.length < 2) {
+              // URL doesn't contain a '?' mark
+              return null;
+            }
+        
+            const inputValue = urlParts[1];
+            if (inputValue.includes('products')) {
+              return inputValue;
+            } else {
+              return null;
+            }
+          };
+        
+          const product_link = getInputValueFromUrl();
+          if (product_link) {
+            const input = document.querySelector('#ContactForm-product');
+            input.value = product_link;
+          }
+        });
+        
+      </script>
+</body>
+</html>
